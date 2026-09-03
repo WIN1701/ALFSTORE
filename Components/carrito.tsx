@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
 
 import {
   MessageCircle,
@@ -71,7 +72,7 @@ export default function Carrito() {
         ?.scrollIntoView({
           behavior: "smooth",
         });
-    }, 200);
+    }, 150);
   };
 
   const enviarPedido = () => {
@@ -121,7 +122,7 @@ export default function Carrito() {
 
   return (
     <div
-      className="fixed inset-0 z-[10000] bg-black/80"
+      className="fixed inset-0 z-[10000] bg-black/85"
       onClick={cerrarCarrito}
     >
       <aside
@@ -146,13 +147,13 @@ export default function Carrito() {
           evento.stopPropagation()
         }
       >
-        <div className="flex items-center justify-between border-b border-white/10 bg-black px-5 py-5">
+        <div className="flex shrink-0 items-center justify-between border-b border-white/10 bg-black px-5 py-5">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-600">
+            <p className="urban-kicker text-[9px] text-red-600">
               AlfStore
             </p>
 
-            <h2 className="mt-1 flex items-center gap-2 text-xl font-black uppercase">
+            <h2 className="urban-title mt-2 flex items-center gap-2 text-2xl">
               <ShoppingBag size={22} />
               Tu carrito
             </h2>
@@ -175,7 +176,7 @@ export default function Carrito() {
                 className="text-zinc-600"
               />
 
-              <h3 className="mt-5 text-lg font-black uppercase">
+              <h3 className="urban-title mt-5 text-2xl">
                 Tu carrito está vacío
               </h3>
 
@@ -194,26 +195,26 @@ export default function Carrito() {
                   key={`${item.id}-${item.talla}`}
                   className="flex gap-3 rounded-2xl border border-white/10 bg-zinc-950 p-3"
                 >
-                  <div className="flex h-28 w-24 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black">
-                    <Image
+                  <div className="carrito-foto-contenedor">
+                    <img
                       src={item.imagen}
                       alt={`Camisa AlfStore ${item.id}`}
-                      width={240}
-                      height={300}
-                      unoptimized
-                      className="h-full w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                      draggable={false}
+                      className="carrito-foto"
                     />
                   </div>
 
                   <div className="flex min-w-0 flex-1 flex-col justify-between">
                     <div>
-                      <p className="text-sm font-black uppercase">
+                      <p className="urban-kicker text-[9px] text-white">
                         Camisa #{item.id}
                       </p>
 
-                      <p className="mt-1 text-xs uppercase text-zinc-400">
+                      <p className="mt-2 text-xs uppercase text-zinc-400">
                         Talla:{" "}
-                        <span className="text-red-500">
+                        <span className="font-black text-red-500">
                           {item.talla}
                         </span>
                       </p>
@@ -273,9 +274,9 @@ export default function Carrito() {
         </div>
 
         {carrito.length > 0 && (
-          <div className="border-t border-white/10 bg-black px-5 pb-5 pt-5">
+          <div className="shrink-0 border-t border-white/10 bg-black px-5 pb-5 pt-5">
             <div className="mb-4 flex justify-between">
-              <span className="text-xs font-bold uppercase text-zinc-400">
+              <span className="urban-kicker text-[8px] text-zinc-400">
                 Total de productos
               </span>
 

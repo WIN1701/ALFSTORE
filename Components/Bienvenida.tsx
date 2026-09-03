@@ -1,20 +1,23 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 
 export default function Bienvenida() {
   const [visible, setVisible] = useState(true);
+  const [saliendo, setSaliendo] = useState(false);
 
   useEffect(() => {
-    const temporizador = window.setTimeout(() => {
+    const iniciarSalida = window.setTimeout(() => {
+      setSaliendo(true);
+    }, 1300);
+
+    const eliminar = window.setTimeout(() => {
       setVisible(false);
-    }, 1900);
+    }, 1800);
 
     return () => {
-      window.clearTimeout(temporizador);
+      window.clearTimeout(iniciarSalida);
+      window.clearTimeout(eliminar);
     };
   }, []);
 
@@ -24,7 +27,7 @@ export default function Bienvenida() {
 
   return (
     <div
-      className="
+      className={`
         fixed
         inset-0
         z-[20000]
@@ -34,63 +37,27 @@ export default function Bienvenida() {
         bg-black
         px-5
         text-white
-      "
+        transition-opacity
+        duration-500
+
+        ${saliendo ? "opacity-0" : "opacity-100"}
+      `}
     >
       <div className="text-center">
-        <div
-          className="
-            mx-auto
-            mb-6
-            h-px
-            w-24
-            bg-gradient-to-r
-            from-transparent
-            via-red-600
-            to-transparent
-          "
-        />
+        <div className="mx-auto mb-6 h-px w-24 bg-red-600" />
 
-        <h1
-          className="
-            animate-pulse
-            text-5xl
-            font-black
-            tracking-[-0.07em]
-            sm:text-7xl
-          "
-        >
+        <h1 className="alf-logo text-6xl sm:text-8xl">
           Alf
           <span className="text-red-600">
             Store
           </span>
         </h1>
 
-        <p
-          className="
-            mt-5
-            text-[10px]
-            font-black
-            uppercase
-            tracking-[0.35em]
-            text-zinc-500
-            sm:text-xs
-          "
-        >
+        <p className="urban-kicker mt-6 text-[9px] text-zinc-500 sm:text-xs">
           Del caos nace el carácter
         </p>
 
-        <div
-          className="
-            mx-auto
-            mt-6
-            h-px
-            w-24
-            bg-gradient-to-r
-            from-transparent
-            via-red-600
-            to-transparent
-          "
-        />
+        <div className="mx-auto mt-6 h-px w-24 bg-red-600" />
       </div>
     </div>
   );

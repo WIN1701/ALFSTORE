@@ -14,7 +14,6 @@ export default function Hero() {
         alf-hero
         relative
         flex
-        min-h-[100svh]
         w-full
         items-center
         overflow-hidden
@@ -23,10 +22,8 @@ export default function Hero() {
         text-white
       "
     >
-      {/* VIDEO DE FONDO */}
       <VideoHero />
 
-      {/* CAPAS PARA QUE LAS LETRAS SE LEAN */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-black/35" />
 
       <div
@@ -36,7 +33,7 @@ export default function Hero() {
           inset-0
           z-[2]
           bg-gradient-to-b
-          from-black/70
+          from-black/75
           via-black/10
           to-black
         "
@@ -50,12 +47,11 @@ export default function Hero() {
           z-[2]
           bg-gradient-to-r
           from-black/75
-          via-black/10
+          via-transparent
           to-black/45
         "
       />
 
-      {/* MARCA GRANDE DE FONDO */}
       <div
         aria-hidden="true"
         className="
@@ -67,13 +63,11 @@ export default function Hero() {
           z-[3]
           -translate-x-1/2
           -translate-y-1/2
-          select-none
         "
       >
         ALF
       </div>
 
-      {/* CONTENIDO */}
       <div
         className="
           relative
@@ -101,10 +95,9 @@ export default function Hero() {
             rounded-full
             border
             border-red-600/50
-            bg-black/65
+            bg-black/75
             px-4
             py-2
-            backdrop-blur-sm
           "
         >
           <Sparkles
@@ -112,16 +105,7 @@ export default function Hero() {
             className="text-red-500"
           />
 
-          <span
-            className="
-              text-[9px]
-              font-black
-              uppercase
-              tracking-[0.25em]
-              text-zinc-200
-              sm:text-xs
-            "
-          >
+          <span className="urban-kicker text-[9px] text-zinc-200 sm:text-xs">
             AlfStore Streetwear
           </span>
         </div>
@@ -131,10 +115,6 @@ export default function Hero() {
             hero-title
             max-w-5xl
             text-5xl
-            font-black
-            uppercase
-            leading-[0.88]
-            tracking-[-0.055em]
             text-white
             sm:text-6xl
             md:text-7xl
@@ -144,14 +124,7 @@ export default function Hero() {
         >
           Del caos nace
 
-          <span
-            className="
-              mt-1
-              block
-              text-red-600
-              drop-shadow-[0_0_25px_rgba(239,16,28,0.35)]
-            "
-          >
+          <span className="urban-red mt-1 block">
             el carácter
           </span>
         </h1>
@@ -161,10 +134,9 @@ export default function Hero() {
             mt-7
             max-w-xl
             text-sm
-            leading-6
+            leading-7
             text-zinc-200
             sm:text-base
-            sm:leading-7
             lg:text-lg
           "
         >
@@ -188,7 +160,6 @@ export default function Hero() {
           <a
             href="#catalogo"
             className="
-              group
               flex
               min-h-12
               w-full
@@ -202,19 +173,13 @@ export default function Hero() {
               text-xs
               font-black
               uppercase
-              tracking-[0.12em]
+              tracking-wider
               text-white
-              transition
-              hover:bg-red-600
               sm:w-auto
             "
           >
             Ver colección
-
-            <ArrowRight
-              size={18}
-              className="transition-transform group-hover:translate-x-1"
-            />
+            <ArrowRight size={18} />
           </a>
 
           <a
@@ -228,18 +193,14 @@ export default function Hero() {
               rounded-full
               border
               border-white/30
-              bg-black/55
+              bg-black/75
               px-8
               py-4
               text-xs
               font-black
               uppercase
-              tracking-[0.12em]
+              tracking-wider
               text-white
-              backdrop-blur-sm
-              transition
-              hover:bg-white
-              hover:text-black
               sm:w-auto
             "
           >
@@ -248,10 +209,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* INDICADOR INFERIOR */}
       <a
         href="#catalogo"
-        aria-label="Ir al catálogo"
         className="
           absolute
           bottom-4
@@ -264,15 +223,7 @@ export default function Hero() {
           gap-2
         "
       >
-        <span
-          className="
-            text-[8px]
-            font-black
-            uppercase
-            tracking-[0.3em]
-            text-zinc-400
-          "
-        >
+        <span className="urban-kicker text-[8px] text-zinc-400">
           Explorar
         </span>
 
@@ -286,7 +237,7 @@ export default function Hero() {
             rounded-full
             border
             border-white/25
-            bg-black/55
+            bg-black/70
             text-red-500
           "
         >

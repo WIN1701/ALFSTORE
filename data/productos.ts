@@ -8,12 +8,14 @@ export const productos: Producto[] = Array.from(
   (_, indice): Producto => {
     const id = indice + 1;
     const numero = String(id).padStart(3, "0");
-    const extension =
+
+    const extensionInicial =
       id <= 4 ? "webp" : "jpg";
 
     return {
       id,
-      imagen: `/productos/camisa${numero}.${extension}`,
+      imagen:
+        `/productos/camisa${numero}.${extensionInicial}`,
     };
   }
 );

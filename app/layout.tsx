@@ -21,7 +21,7 @@ export default function RootLayout({
 }: RootLayoutProps) {
   return (
     <html lang="es">
-      <body className="min-h-screen overflow-x-hidden bg-black text-white antialiased">
+      <body>
         <CartProvider>
           {children}
           <Carrito />

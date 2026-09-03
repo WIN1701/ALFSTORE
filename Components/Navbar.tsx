@@ -33,9 +33,8 @@ export default function Navbar() {
         w-full
         border-b
         border-white/10
-        bg-black/90
+        bg-black
         text-white
-        backdrop-blur-xl
       "
     >
       <div
@@ -54,11 +53,7 @@ export default function Navbar() {
         <a
           href="#inicio"
           onClick={cerrarMenu}
-          className="
-            text-3xl
-            font-black
-            tracking-[-0.06em]
-          "
+          className="alf-logo text-3xl text-white"
         >
           Alf
           <span className="text-red-600">
@@ -69,21 +64,21 @@ export default function Navbar() {
         <nav className="hidden items-center gap-8 md:flex">
           <a
             href="#inicio"
-            className="text-xs font-black uppercase tracking-wider text-zinc-300 hover:text-red-500"
+            className="urban-kicker text-[10px] text-zinc-300 hover:text-red-500"
           >
             Inicio
           </a>
 
           <a
             href="#historia"
-            className="text-xs font-black uppercase tracking-wider text-zinc-300 hover:text-red-500"
+            className="urban-kicker text-[10px] text-zinc-300 hover:text-red-500"
           >
             Historia
           </a>
 
           <a
             href="#catalogo"
-            className="text-xs font-black uppercase tracking-wider text-zinc-300 hover:text-red-500"
+            className="urban-kicker text-[10px] text-zinc-300 hover:text-red-500"
           >
             Colección
           </a>
@@ -139,7 +134,8 @@ export default function Navbar() {
             type="button"
             onClick={() =>
               setMenuAbierto(
-                (estado) => !estado
+                (estadoActual) =>
+                  !estadoActual
               )
             }
             className="
@@ -171,7 +167,7 @@ export default function Navbar() {
             <a
               href="#inicio"
               onClick={cerrarMenu}
-              className="rounded-xl px-4 py-3 text-sm font-black uppercase text-zinc-300"
+              className="urban-kicker rounded-xl px-4 py-3 text-xs text-zinc-300"
             >
               Inicio
             </a>
@@ -179,7 +175,7 @@ export default function Navbar() {
             <a
               href="#historia"
               onClick={cerrarMenu}
-              className="rounded-xl px-4 py-3 text-sm font-black uppercase text-zinc-300"
+              className="urban-kicker rounded-xl px-4 py-3 text-xs text-zinc-300"
             >
               Historia
             </a>
@@ -187,7 +183,7 @@ export default function Navbar() {
             <a
               href="#catalogo"
               onClick={cerrarMenu}
-              className="rounded-xl px-4 py-3 text-sm font-black uppercase text-zinc-300"
+              className="urban-kicker rounded-xl px-4 py-3 text-xs text-zinc-300"
             >
               Colección
             </a>

@@ -1,12 +1,37 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+
+"use client";
+
+import { useState } from "react";
 
 import {
   Crown,
   Flame,
+  ImageOff,
   Shield,
 } from "lucide-react";
 
+const RUTAS_HISTORIA = [
+  "/fondos/historia.jpg",
+  "/fondo/historia.jpg",
+  "/fondos/historia.jpeg",
+  "/fondo/historia.jpeg",
+  "/fondos/historia.webp",
+  "/fondo/historia.webp",
+  "/fondos/historia.png",
+  "/fondo/historia.png",
+];
+
 export default function Historia() {
+  const [indiceRuta, setIndiceRuta] =
+    useState(0);
+
+  const sinImagen =
+    indiceRuta >= RUTAS_HISTORIA.length;
+
+  const rutaActual =
+    RUTAS_HISTORIA[indiceRuta];
+
   return (
     <section
       id="historia"
@@ -16,7 +41,6 @@ export default function Historia() {
         overflow-hidden
         border-y
         border-white/10
-        bg-[#050505]
         px-4
         py-16
         text-white
@@ -34,56 +58,75 @@ export default function Historia() {
             border
             border-white/15
             bg-black
-            shadow-[0_30px_80px_rgba(0,0,0,0.65)]
           "
         >
           <div className="grid lg:grid-cols-2">
-            {/* IMAGEN DE HISTORIA */}
             <div
               className="
-                relative
-                aspect-[4/5]
-                w-full
-                overflow-hidden
+                historia-media
                 border-b
                 border-white/10
-                bg-black
-                sm:aspect-[5/6]
-                lg:aspect-auto
-                lg:min-h-[720px]
                 lg:border-b-0
                 lg:border-r
               "
             >
-              <Image
-                src="/fondos/historia.jpg"
-                alt="Historia urbana de AlfStore"
-                fill
-                priority
-                sizes="
-                  (max-width: 1024px) 100vw,
-                  50vw
-                "
-                className="
-                  object-cover
-                  object-center
-                "
-              />
+              {!sinImagen ? (
+                <img
+                  key={rutaActual}
+                  src={rutaActual}
+                  alt="Historia urbana de AlfStore"
+                  loading="eager"
+                  decoding="async"
+                  draggable={false}
+                  onError={() => {
+                    setIndiceRuta(
+                      (indiceActual) =>
+                        indiceActual + 1
+                    );
+                  }}
+                  className="historia-foto"
+                />
+              ) : (
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-4
+                    bg-[#050505]
+                    px-6
+                    text-center
+                    text-zinc-500
+                  "
+                >
+                  <ImageOff size={38} />
 
-              {/* OSCURECIDO SUAVE */}
+                  <p className="urban-kicker text-[9px]">
+                    Imagen no encontrada
+                  </p>
+
+                  <p className="max-w-xs text-xs leading-5 text-zinc-600">
+                    Revisa que el archivo sea
+                    public/fondos/historia.jpg
+                  </p>
+                </div>
+              )}
+
               <div
                 className="
                   pointer-events-none
                   absolute
                   inset-0
                   bg-gradient-to-t
-                  from-black/80
-                  via-black/10
-                  to-black/20
+                  from-black/85
+                  via-transparent
+                  to-black/15
                 "
               />
 
-              {/* TEXTO SOBRE LA IMAGEN */}
               <div
                 className="
                   absolute
@@ -96,37 +139,16 @@ export default function Historia() {
                   sm:right-8
                 "
               >
-                <p
-                  className="
-                    text-[10px]
-                    font-black
-                    uppercase
-                    tracking-[0.3em]
-                    text-red-500
-                    sm:text-xs
-                  "
-                >
+                <p className="urban-kicker text-[9px] text-red-500 sm:text-xs">
                   Nuestra esencia
                 </p>
 
-                <p
-                  className="
-                    mt-3
-                    max-w-md
-                    text-2xl
-                    font-black
-                    uppercase
-                    leading-tight
-                    text-white
-                    sm:text-3xl
-                  "
-                >
+                <p className="urban-title mt-3 max-w-md text-2xl text-white sm:text-3xl">
                   Del caos nace el carácter
                 </p>
               </div>
             </div>
 
-            {/* INFORMACIÓN */}
             <div
               className="
                 flex
@@ -140,27 +162,15 @@ export default function Historia() {
                 lg:py-20
               "
             >
-              <p
-                className="
-                  mb-5
-                  text-xs
-                  font-black
-                  uppercase
-                  tracking-[0.32em]
-                  text-red-500
-                "
-              >
+              <p className="urban-kicker mb-5 text-xs text-red-500">
                 Nuestra historia
               </p>
 
               <h2
                 className="
+                  urban-title
                   max-w-2xl
                   text-4xl
-                  font-black
-                  uppercase
-                  leading-[0.95]
-                  tracking-[-0.04em]
                   text-white
                   sm:text-5xl
                   lg:text-6xl
@@ -168,27 +178,12 @@ export default function Historia() {
               >
                 Más que una marca,
 
-                <span
-                  className="
-                    mt-2
-                    block
-                    text-red-600
-                  "
-                >
+                <span className="urban-red mt-2 block">
                   un estilo de vida.
                 </span>
               </h2>
 
-              <p
-                className="
-                  mt-8
-                  max-w-xl
-                  text-sm
-                  leading-7
-                  text-zinc-400
-                  sm:text-base
-                "
-              >
+              <p className="mt-8 max-w-xl text-sm leading-7 text-zinc-400 sm:text-base">
                 AlfStore nace de una visión urbana,
                 auténtica y diferente. Cada diseño
                 representa carácter, rebeldía y la
@@ -196,171 +191,55 @@ export default function Historia() {
                 reglas de los demás.
               </p>
 
-              <p
-                className="
-                  mt-4
-                  max-w-xl
-                  text-sm
-                  leading-7
-                  text-zinc-400
-                  sm:text-base
-                "
-              >
+              <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-400 sm:text-base">
                 No hacemos solamente ropa. Creamos
                 identidad para quienes entienden que
                 vestir también es una forma de
                 expresar quiénes son.
               </p>
 
-              {/* VALORES */}
-              <div
-                className="
-                  mt-10
-                  grid
-                  gap-3
-                  sm:grid-cols-3
-                "
-              >
-                <div
-                  className="
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-[#080808]
-                    p-4
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-red-950/40
-                      text-red-500
-                    "
-                  >
-                    <Flame size={21} />
-                  </div>
+              <div className="mt-10 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-[#080808] p-4">
+                  <Flame
+                    size={22}
+                    className="text-red-500"
+                  />
 
-                  <h3
-                    className="
-                      mt-4
-                      text-sm
-                      font-black
-                      uppercase
-                      text-white
-                    "
-                  >
+                  <h3 className="urban-kicker mt-4 text-[10px] text-white">
                     Carácter
                   </h3>
 
-                  <p
-                    className="
-                      mt-2
-                      text-xs
-                      leading-5
-                      text-zinc-500
-                    "
-                  >
+                  <p className="mt-2 text-xs leading-5 text-zinc-500">
                     Diseños con personalidad.
                   </p>
                 </div>
 
-                <div
-                  className="
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-[#080808]
-                    p-4
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-red-950/40
-                      text-red-500
-                    "
-                  >
-                    <Shield size={21} />
-                  </div>
+                <div className="rounded-2xl border border-white/10 bg-[#080808] p-4">
+                  <Shield
+                    size={22}
+                    className="text-red-500"
+                  />
 
-                  <h3
-                    className="
-                      mt-4
-                      text-sm
-                      font-black
-                      uppercase
-                      text-white
-                    "
-                  >
+                  <h3 className="urban-kicker mt-4 text-[10px] text-white">
                     Identidad
                   </h3>
 
-                  <p
-                    className="
-                      mt-2
-                      text-xs
-                      leading-5
-                      text-zinc-500
-                    "
-                  >
+                  <p className="mt-2 text-xs leading-5 text-zinc-500">
                     Viste lo que representas.
                   </p>
                 </div>
 
-                <div
-                  className="
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-[#080808]
-                    p-4
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-red-950/40
-                      text-red-500
-                    "
-                  >
-                    <Crown size={21} />
-                  </div>
+                <div className="rounded-2xl border border-white/10 bg-[#080808] p-4">
+                  <Crown
+                    size={22}
+                    className="text-red-500"
+                  />
 
-                  <h3
-                    className="
-                      mt-4
-                      text-sm
-                      font-black
-                      uppercase
-                      text-white
-                    "
-                  >
+                  <h3 className="urban-kicker mt-4 text-[10px] text-white">
                     Exclusividad
                   </h3>
 
-                  <p
-                    className="
-                      mt-2
-                      text-xs
-                      leading-5
-                      text-zinc-500
-                    "
-                  >
+                  <p className="mt-2 text-xs leading-5 text-zinc-500">
                     Not for everyone.
                   </p>
                 </div>
@@ -378,15 +257,11 @@ export default function Historia() {
                   rounded-full
                   bg-red-700
                   px-8
-                  text-center
                   text-xs
                   font-black
                   uppercase
-                  tracking-[0.16em]
+                  tracking-wider
                   text-white
-                  transition
-                  hover:bg-red-600
-                  active:scale-[0.98]
                   sm:w-fit
                 "
               >

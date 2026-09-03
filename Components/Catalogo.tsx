@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-} from "react";
-
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import {
   Check,
@@ -27,13 +22,7 @@ import {
   type Talla,
 } from "../app/context/cartcontext";
 
-const TALLAS: Talla[] = [
-  "S",
-  "M",
-  "L",
-  "XL",
-];
-
+const TALLAS: Talla[] = ["S", "M", "L", "XL"];
 const PRODUCTOS_POR_PAGINA = 15;
 
 export default function Catalogo() {
@@ -201,18 +190,7 @@ export default function Catalogo() {
             </p>
           </div>
 
-          <div
-            className="
-              catalogo-grid
-              grid
-              grid-cols-2
-              gap-3
-              sm:grid-cols-3
-              sm:gap-5
-              lg:grid-cols-4
-              xl:grid-cols-5
-            "
-          >
+          <div className="catalogo-grid">
             {productosVisibles.map(
               (producto) => {
                 const tallaSeleccionada =
@@ -232,17 +210,7 @@ export default function Catalogo() {
                 return (
                   <article
                     key={producto.id}
-                    className="
-                      producto-card
-                      flex
-                      min-w-0
-                      flex-col
-                      overflow-hidden
-                      rounded-2xl
-                      border
-                      border-white/15
-                      bg-[#080808]
-                    "
+                    className="producto-card"
                   >
                     <button
                       type="button"
@@ -254,19 +222,10 @@ export default function Catalogo() {
                           );
                         }
                       }}
-                      className="
-                        group
-                        block
-                        aspect-[4/5]
-                        w-full
-                        overflow-hidden
-                        border-0
-                        bg-[#050505]
-                        p-0
-                      "
+                      className="producto-media"
                     >
                       {imagenConError ? (
-                        <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-zinc-950 text-zinc-600">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-zinc-950 text-zinc-600">
                           <ImageOff size={30} />
 
                           <span className="text-[9px] font-black uppercase">
@@ -274,38 +233,34 @@ export default function Catalogo() {
                           </span>
                         </div>
                       ) : (
-                        <div className="relative h-full w-full">
-                          <Image
-                            src={producto.imagen}
-                            alt={`Camisa AlfStore ${producto.id}`}
-                            width={900}
-                            height={1125}
-                            unoptimized
-                            priority={
-                              paginaActual === 1 &&
-                              producto.id <= 4
-                            }
-                            onError={() => {
-                              setImagenesConError(
-                                (anterior) => ({
-                                  ...anterior,
-                                  [producto.id]:
-                                    true,
-                                })
-                              );
-                            }}
-                            className="
-                              h-full
-                              w-full
-                              object-contain
-                              object-center
-                            "
-                          />
+                        <img
+                          src={`${producto.imagen}?v=7`}
+                          alt={`Camisa AlfStore ${producto.id}`}
+                          loading={
+                            paginaActual === 1 &&
+                            producto.id <= 4
+                              ? "eager"
+                              : "lazy"
+                          }
+                          decoding="async"
+                          draggable={false}
+                          onError={() => {
+                            setImagenesConError(
+                              (anterior) => ({
+                                ...anterior,
+                                [producto.id]:
+                                  true,
+                              })
+                            );
+                          }}
+                          className="producto-foto"
+                        />
+                      )}
 
-                          <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/85 text-white">
-                            <ZoomIn size={18} />
-                          </span>
-                        </div>
+                      {!imagenConError && (
+                        <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/85 text-white">
+                          <ZoomIn size={18} />
+                        </span>
                       )}
                     </button>
 
@@ -445,6 +400,8 @@ export default function Catalogo() {
 
       {imagenAmpliada && (
         <div
+          role="dialog"
+          aria-modal="true"
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 px-4 py-6"
           onClick={() =>
             setImagenAmpliada(null)
@@ -461,20 +418,20 @@ export default function Catalogo() {
               onClick={() =>
                 setImagenAmpliada(null)
               }
-              className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/90"
+              className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/90 text-white"
             >
               <X size={24} />
             </button>
 
-            <Image
-              src={imagenAmpliada}
-              alt="Vista ampliada de la camisa"
-              width={900}
-              height={1125}
-              unoptimized
-              priority
-              className="max-h-[75dvh] w-full object-contain"
-            />
+            <div className="modal-producto">
+              <img
+                src={`${imagenAmpliada}?v=7`}
+                alt="Vista ampliada de la camisa"
+                decoding="async"
+                draggable={false}
+                className="modal-producto-foto"
+              />
+            </div>
           </div>
         </div>
       )}

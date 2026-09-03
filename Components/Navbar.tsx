@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import {
   Menu,
   ShoppingBag,
@@ -42,6 +41,7 @@ export default function Navbar() {
           mx-auto
           flex
           h-20
+          w-full
           max-w-7xl
           items-center
           justify-between
@@ -50,40 +50,81 @@ export default function Navbar() {
           lg:px-8
         "
       >
+        {/* LOGO ALFSTORE */}
         <a
           href="#inicio"
           onClick={cerrarMenu}
-          className="alf-logo text-3xl text-white"
+          className="
+            alf-logo
+            alf-logo-navbar
+          "
+          aria-label="Ir al inicio de AlfStore"
         >
-          Alf
-          <span className="text-red-600">
+          <span className="alf-logo-white">
+            Alf
+          </span>
+
+          <span className="alf-logo-red">
             Store
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* MENÚ PARA COMPUTADORA */}
+        <nav
+          className="
+            hidden
+            items-center
+            gap-8
+            md:flex
+          "
+        >
           <a
             href="#inicio"
-            className="urban-kicker text-[10px] text-zinc-300 hover:text-red-500"
+            className="
+              text-xs
+              font-black
+              uppercase
+              tracking-wider
+              text-zinc-300
+              transition-colors
+              hover:text-red-500
+            "
           >
             Inicio
           </a>
 
           <a
             href="#historia"
-            className="urban-kicker text-[10px] text-zinc-300 hover:text-red-500"
+            className="
+              text-xs
+              font-black
+              uppercase
+              tracking-wider
+              text-zinc-300
+              transition-colors
+              hover:text-red-500
+            "
           >
             Historia
           </a>
 
           <a
             href="#catalogo"
-            className="urban-kicker text-[10px] text-zinc-300 hover:text-red-500"
+            className="
+              text-xs
+              font-black
+              uppercase
+              tracking-wider
+              text-zinc-300
+              transition-colors
+              hover:text-red-500
+            "
           >
             Colección
           </a>
         </nav>
 
+        {/* CARRITO Y MENÚ MÓVIL */}
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -100,6 +141,8 @@ export default function Navbar() {
               border-white/15
               bg-zinc-950
               text-white
+              transition-colors
+              hover:border-red-600/60
             "
             aria-label="Abrir carrito"
           >
@@ -121,6 +164,7 @@ export default function Navbar() {
                   px-1
                   text-[10px]
                   font-black
+                  text-white
                 "
               >
                 {cantidadTotal > 99
@@ -132,12 +176,12 @@ export default function Navbar() {
 
           <button
             type="button"
-            onClick={() =>
+            onClick={() => {
               setMenuAbierto(
                 (estadoActual) =>
                   !estadoActual
-              )
-            }
+              );
+            }}
             className="
               flex
               h-12
@@ -148,9 +192,17 @@ export default function Navbar() {
               border
               border-white/15
               bg-zinc-950
+              text-white
+              transition-colors
+              hover:border-red-600/60
               md:hidden
             "
-            aria-label="Abrir menú"
+            aria-label={
+              menuAbierto
+                ? "Cerrar menú"
+                : "Abrir menú"
+            }
+            aria-expanded={menuAbierto}
           >
             {menuAbierto ? (
               <X size={23} />
@@ -161,13 +213,35 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* MENÚ PARA TELÉFONO */}
       {menuAbierto && (
-        <nav className="border-t border-white/10 bg-black px-5 py-5 md:hidden">
+        <nav
+          className="
+            border-t
+            border-white/10
+            bg-black
+            px-5
+            py-5
+            md:hidden
+          "
+        >
           <div className="flex flex-col gap-2">
             <a
               href="#inicio"
               onClick={cerrarMenu}
-              className="urban-kicker rounded-xl px-4 py-3 text-xs text-zinc-300"
+              className="
+                rounded-xl
+                px-4
+                py-3
+                text-sm
+                font-black
+                uppercase
+                tracking-wider
+                text-zinc-300
+                transition-colors
+                hover:bg-white/5
+                hover:text-red-500
+              "
             >
               Inicio
             </a>
@@ -175,7 +249,19 @@ export default function Navbar() {
             <a
               href="#historia"
               onClick={cerrarMenu}
-              className="urban-kicker rounded-xl px-4 py-3 text-xs text-zinc-300"
+              className="
+                rounded-xl
+                px-4
+                py-3
+                text-sm
+                font-black
+                uppercase
+                tracking-wider
+                text-zinc-300
+                transition-colors
+                hover:bg-white/5
+                hover:text-red-500
+              "
             >
               Historia
             </a>
@@ -183,7 +269,19 @@ export default function Navbar() {
             <a
               href="#catalogo"
               onClick={cerrarMenu}
-              className="urban-kicker rounded-xl px-4 py-3 text-xs text-zinc-300"
+              className="
+                rounded-xl
+                px-4
+                py-3
+                text-sm
+                font-black
+                uppercase
+                tracking-wider
+                text-zinc-300
+                transition-colors
+                hover:bg-white/5
+                hover:text-red-500
+              "
             >
               Colección
             </a>

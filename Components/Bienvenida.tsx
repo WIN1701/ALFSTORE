@@ -1,23 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 export default function Bienvenida() {
-  const [visible, setVisible] = useState(true);
-  const [saliendo, setSaliendo] = useState(false);
+  const [visible, setVisible] =
+    useState(true);
+
+  const [saliendo, setSaliendo] =
+    useState(false);
 
   useEffect(() => {
-    const iniciarSalida = window.setTimeout(() => {
-      setSaliendo(true);
-    }, 1300);
+    const iniciarSalida =
+      window.setTimeout(() => {
+        setSaliendo(true);
+      }, 1300);
 
-    const eliminar = window.setTimeout(() => {
-      setVisible(false);
-    }, 1800);
+    const eliminarBienvenida =
+      window.setTimeout(() => {
+        setVisible(false);
+      }, 1800);
 
     return () => {
       window.clearTimeout(iniciarSalida);
-      window.clearTimeout(eliminar);
+      window.clearTimeout(
+        eliminarBienvenida
+      );
     };
   }, []);
 
@@ -40,24 +50,62 @@ export default function Bienvenida() {
         transition-opacity
         duration-500
 
-        ${saliendo ? "opacity-0" : "opacity-100"}
+        ${
+          saliendo
+            ? "pointer-events-none opacity-0"
+            : "opacity-100"
+        }
       `}
     >
       <div className="text-center">
-        <div className="mx-auto mb-6 h-px w-24 bg-red-600" />
+        <div
+          className="
+            mx-auto
+            mb-7
+            h-px
+            w-24
+            bg-red-600
+          "
+        />
 
-        <h1 className="alf-logo text-6xl sm:text-8xl">
-          Alf
-          <span className="text-red-600">
+        <h1
+          className="
+            alf-logo
+            alf-logo-bienvenida
+          "
+        >
+          <span className="alf-logo-white">
+            Alf
+          </span>
+
+          <span className="alf-logo-red">
             Store
           </span>
         </h1>
 
-        <p className="urban-kicker mt-6 text-[9px] text-zinc-500 sm:text-xs">
+        <p
+          className="
+            mt-7
+            text-[9px]
+            font-black
+            uppercase
+            tracking-[0.3em]
+            text-zinc-500
+            sm:text-xs
+          "
+        >
           Del caos nace el carácter
         </p>
 
-        <div className="mx-auto mt-6 h-px w-24 bg-red-600" />
+        <div
+          className="
+            mx-auto
+            mt-7
+            h-px
+            w-24
+            bg-red-600
+          "
+        />
       </div>
     </div>
   );

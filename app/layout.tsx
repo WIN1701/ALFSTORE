@@ -1,15 +1,9 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@/app/globals.css";
-import { CartProvider } from "@/app/context/cartcontext";
-import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
-
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from "node_modules/next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AlfStore | Del caos nace el carácter",
-  description: "AlfStore Streetwear - Catálogo oficial",
-  manifest: "/manifest.json",
+  description: "Tienda urbana y de identidad",
 };
 
 export default function RootLayout({
@@ -18,13 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className="bg-black">
-      <body className={`${inter.className} bg-black text-white antialiased`}>
-        <CartProvider>
-          {children}
-          <ServiceWorkerRegister />
-        </CartProvider>
-      </body>
+    <html lang="es">
+      <body className="antialiased bg-black text-white">{children}</body>
     </html>
   );
 }

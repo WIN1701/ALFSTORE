@@ -1,19 +1,32 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
 import "./globals.css";
 
+import { CartProvider } from "./context/cartcontext";
+import Carrito from "../Components/carrito";
+
 export const metadata: Metadata = {
-  title: "AlfStore | Del caos nace el carácter",
-  description: "Tienda urbana y de identidad",
+  title: "AlfStore",
+  description:
+    "AlfStore Streetwear. Del caos nace el carácter.",
 };
+
+interface RootLayoutProps {
+  children: ReactNode;
+}
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: RootLayoutProps) {
   return (
     <html lang="es">
-      <body className="antialiased bg-black text-white">{children}</body>
+      <body>
+        <CartProvider>
+          {children}
+          <Carrito />
+        </CartProvider>
+      </body>
     </html>
   );
 }

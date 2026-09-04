@@ -9,57 +9,6 @@ import {
 
 import { useCart } from "../app/context/cartcontext";
 
-// Íconos personalizados en SVG para redes sociales
-const InstagramIcon = ({ size = 20, className = "" }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
-);
-
-const TikTokIcon = ({ size = 20, className = "" }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-  </svg>
-);
-
-const WhatsAppIcon = ({ size = 20, className = "" }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-);
-
 export default function Navbar() {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
@@ -169,7 +118,7 @@ export default function Navbar() {
               aria-label="Instagram de AlfStore"
               className="p-2 text-zinc-400 hover:text-red-500 transition-colors"
             >
-              <InstagramIcon size={20} />
+              <img src="/instagram.png" alt="Instagram" className="w-5 h-5 object-contain" />
             </a>
             <a
               href="https://www.tiktok.com/@alfstore.sv?_r=1&_t=ZS-97vyM0WHz4k"
@@ -178,7 +127,7 @@ export default function Navbar() {
               aria-label="TikTok de AlfStore"
               className="p-2 text-zinc-400 hover:text-red-500 transition-colors"
             >
-              <TikTokIcon size={20} />
+              <img src="/tiktok.png" alt="TikTok" className="w-5 h-5 object-contain" />
             </a>
             <a
               href="https://wa.me/"
@@ -187,7 +136,7 @@ export default function Navbar() {
               aria-label="WhatsApp de AlfStore"
               className="p-2 text-zinc-400 hover:text-red-500 transition-colors"
             >
-              <WhatsAppIcon size={20} />
+              <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
             </a>
           </div>
         </div>
@@ -349,7 +298,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs font-bold text-zinc-400 hover:text-red-500 py-2"
               >
-                <InstagramIcon size={18} /> Instagram
+                <img src="/instagram.png" alt="Instagram" className="w-[18px] h-[18px] object-contain" /> Instagram
               </a>
               <a
                 href="https://www.tiktok.com/@alfstore.sv?_r=1&_t=ZS-97vyM0WHz4k"
@@ -357,7 +306,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs font-bold text-zinc-400 hover:text-red-500 py-2"
               >
-                <TikTokIcon size={18} /> TikTok
+                <img src="/tiktok.png" alt="TikTok" className="w-[18px] h-[18px] object-contain" /> TikTok
               </a>
               <a
                 href="https://wa.me/"
@@ -365,7 +314,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs font-bold text-zinc-400 hover:text-red-500 py-2"
               >
-                <WhatsAppIcon size={18} /> WhatsApp
+                <img src="/whatsapp.png" alt="WhatsApp" className="w-[18px] h-[18px] object-contain" /> WhatsApp
               </a>
             </div>
           </div>

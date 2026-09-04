@@ -4,7 +4,7 @@ export interface Producto {
 }
 
 export const productos: Producto[] = Array.from(
-  { length: 120 },
+  { length: 197 },
   (_, indice): Producto => {
     const id = indice + 1;
     const numero = String(id).padStart(3, "0");

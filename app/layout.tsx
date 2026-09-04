@@ -5,6 +5,7 @@ import "./globals.css";
 
 import { CartProvider } from "./context/cartcontext";
 import Carrito from "../Components/carrito";
+import ServiceWorkerRegister from "../Components/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
   title: "AlfStore",
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="es">
       <body>
         <CartProvider>
+          <ServiceWorkerRegister />
           {children}
           <Carrito />
         </CartProvider>

@@ -234,11 +234,11 @@ video {
 
   -webkit-text-stroke:
     0.5px
-    rgba(255, 65, 75, 0.25);
+    rgba(180, 0, 10, 0.4);
 
   text-shadow:
-    0 2px 0 #760008,
-    0 5px 10px rgba(0, 0, 0, 0.82);
+    0 2px 0 #500005,
+    0 4px 12px rgba(239, 16, 28, 0.35);
 }
 
 .alf-logo-navbar {

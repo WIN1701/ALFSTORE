@@ -1,3 +1,4 @@
+// app/page.tsx
 import Bienvenida from "../Components/Bienvenida";
 import Navbar from "../Components/Navbar";
 import Hero from "../Components/Hero";
@@ -12,7 +13,7 @@ export default function Home() {
     <>
       <Bienvenida />
 
-      <main className="min-h-screen w-full overflow-x-hidden bg-black text-white">
+      <main className="min-h-dvh w-full overflow-x-hidden bg-black text-white flex flex-col">
         <Navbar />
         <Hero />
         <Historia />

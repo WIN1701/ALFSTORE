@@ -130,7 +130,7 @@ export default function Navbar() {
               <img src="/tiktok.png" alt="TikTok" className="w-5 h-5 object-contain" />
             </a>
             <a
-              href="https://wa.me/"
+              href="https://wa.me/50372797408"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp de AlfStore"
@@ -309,7 +309,7 @@ export default function Navbar() {
                 <img src="/tiktok.png" alt="TikTok" className="w-[18px] h-[18px] object-contain" /> TikTok
               </a>
               <a
-                href="https://wa.me/"
+                href="https://wa.me/50372797408"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs font-bold text-zinc-400 hover:text-red-500 py-2"

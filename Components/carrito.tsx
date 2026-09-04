@@ -15,7 +15,7 @@ import {
 
 import { useCart } from "../app/context/cartcontext";
 
-const NUMERO_WHATSAPP = "50360197818";
+const NUMERO_WHATSAPP = "50372797408";
 
 export default function Carrito() {
   const {
@@ -87,7 +87,7 @@ export default function Carrito() {
 
         return [
           `*Producto ${indice + 1}*`,
-          `Camisa: #${item.id}`,
+          `Camisa: #${indice + 1}`,
           `Talla: ${item.talla}`,
           `Cantidad: ${item.cantidad}`,
           `Imagen: ${enlaceImagen}`,
@@ -190,7 +190,7 @@ export default function Carrito() {
             </div>
           ) : (
             <div className="space-y-4">
-              {carrito.map((item) => (
+              {carrito.map((item, indice) => (
                 <article
                   key={`${item.id}-${item.talla}`}
                   className="flex gap-3 rounded-2xl border border-white/10 bg-zinc-950 p-3"
@@ -198,7 +198,7 @@ export default function Carrito() {
                   <div className="carrito-foto-contenedor">
                     <img
                       src={item.imagen}
-                      alt={`Camisa AlfStore ${item.id}`}
+                      alt={`Camisa AlfStore #${indice + 1}`}
                       loading="lazy"
                       decoding="async"
                       draggable={false}
@@ -209,7 +209,7 @@ export default function Carrito() {
                   <div className="flex min-w-0 flex-1 flex-col justify-between">
                     <div>
                       <p className="urban-kicker text-[9px] text-white">
-                        Camisa #{item.id}
+                        Camisa #{indice + 1}
                       </p>
 
                       <p className="mt-2 text-xs uppercase text-zinc-400">

@@ -123,9 +123,9 @@ export default function Hero() {
           </svg>
         </a>
 
-        {/* WhatsApp (Recuerda cambiar 503XXXXXXXX por tu número real con código de país) */}
+        {/* WhatsApp */}
         <a
-          href="https://wa.me/503XXXXXXXX"
+          href="https://wa.me/50372797408?text=Hola%20AlfStore,%20vengo%20de%20su%20sitio%20web%20y%20quiero%20información"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"

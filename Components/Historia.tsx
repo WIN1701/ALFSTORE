@@ -49,7 +49,7 @@ export default function Historia() {
               "
             >
               <video
-                src="/videos/Alf.MP4"
+                src="/videos/Alf.mp4"
                 autoPlay
                 loop
                 muted

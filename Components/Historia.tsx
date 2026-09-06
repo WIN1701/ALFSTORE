@@ -1,34 +1,12 @@
 "use client";
 
-import { useState } from "react";
-
 import {
   Crown,
   Flame,
-  ImageOff,
   Shield,
 } from "lucide-react";
 
-const RUTAS_HISTORIA = [
-  "/fondos/historia.jpg?v=7",
-  "/fondos/historia.jpeg?v=7",
-  "/fondos/historia.png?v=7",
-  "/fondos/historia.webp?v=7",
-];
-
 export default function Historia() {
-  const [indiceRuta, setIndiceRuta] =
-    useState(0);
-
-  const imagenNoDisponible =
-    indiceRuta >= RUTAS_HISTORIA.length;
-
-  const probarSiguienteImagen = () => {
-    setIndiceRuta((indiceActual) =>
-      indiceActual + 1
-    );
-  };
-
   return (
     <section
       id="historia"
@@ -59,62 +37,25 @@ export default function Historia() {
           "
         >
           <div className="grid lg:grid-cols-2">
-            {/* IMAGEN */}
+            {/* VIDEO */}
             <div
               className="
                 historia-imagen-contenedor
+                relative
                 border-b
                 border-white/10
                 lg:border-b-0
                 lg:border-r
               "
             >
-              {!imagenNoDisponible ? (
-                <img
-                  key={RUTAS_HISTORIA[indiceRuta]}
-                  src={RUTAS_HISTORIA[indiceRuta]}
-                  alt="Historia urbana de AlfStore"
-                  loading="eager"
-                  decoding="async"
-                  draggable={false}
-                  onError={probarSiguienteImagen}
-                  className="historia-imagen"
-                />
-              ) : (
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    gap-4
-                    bg-[#050505]
-                    px-6
-                    text-center
-                    text-zinc-500
-                  "
-                >
-                  <ImageOff size={38} />
-
-                  <p
-                    className="
-                      text-xs
-                      font-black
-                      uppercase
-                      tracking-wider
-                    "
-                  >
-                    No se pudo abrir historia.jpg
-                  </p>
-
-                  <p className="max-w-xs text-xs leading-5 text-zinc-600">
-                    La imagen puede estar dañada o
-                    tener una extensión diferente.
-                  </p>
-                </div>
-              )}
+              <video
+                src="/videos/Alf.MP4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="historia-imagen h-full w-full object-cover"
+              />
 
               <div
                 className="
@@ -211,7 +152,6 @@ export default function Historia() {
                 "
               >
                 Más que una marca,
-
                 <span className="mt-2 block text-red-600">
                   un estilo de vida.
                 </span>
@@ -227,11 +167,7 @@ export default function Historia() {
                   sm:text-base
                 "
               >
-                AlfStore nace de una visión urbana,
-                auténtica y diferente. Cada diseño
-                representa carácter, rebeldía y la
-                seguridad de vestir sin seguir las
-                reglas de los demás.
+                AlfStore nace de una visión urbana, auténtica y diferente. Cada diseño representa carácter, rebeldía y la seguridad de vestir sin seguir las reglas de los demás.
               </p>
 
               <p
@@ -244,10 +180,7 @@ export default function Historia() {
                   sm:text-base
                 "
               >
-                No hacemos solamente ropa. Creamos
-                identidad para quienes entienden que
-                vestir también es una forma de
-                expresar quiénes son.
+                No hacemos solamente ropa. Creamos identidad para quienes entienden que vestir también es una forma de expresar quiénes son.
               </p>
 
               <div
@@ -263,11 +196,9 @@ export default function Historia() {
                     size={22}
                     className="text-red-500"
                   />
-
                   <h3 className="mt-4 text-sm font-black uppercase">
                     Carácter
                   </h3>
-
                   <p className="mt-2 text-xs leading-5 text-zinc-500">
                     Diseños con personalidad.
                   </p>
@@ -278,11 +209,9 @@ export default function Historia() {
                     size={22}
                     className="text-red-500"
                   />
-
                   <h3 className="mt-4 text-sm font-black uppercase">
                     Identidad
                   </h3>
-
                   <p className="mt-2 text-xs leading-5 text-zinc-500">
                     Viste lo que representas.
                   </p>
@@ -293,11 +222,9 @@ export default function Historia() {
                     size={22}
                     className="text-red-500"
                   />
-
                   <h3 className="mt-4 text-sm font-black uppercase">
                     Exclusividad
                   </h3>
-
                   <p className="mt-2 text-xs leading-5 text-zinc-500">
                     Not for everyone.
                   </p>

@@ -52,6 +52,106 @@ export default function Hero() {
         "
       />
 
+      {/* REDES SOCIALES FLOTANTES EN LA SECCIÓN 1 (SOLO MÓVIL, DESAPARECEN AL BAJAR) */}
+      <div
+        className="
+          absolute
+          right-4
+          top-24
+          z-30
+          flex
+          flex-col
+          gap-2.5
+          md:hidden
+        "
+      >
+        {/* Instagram */}
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="
+            flex
+            h-10
+            w-10
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/20
+            bg-black/70
+            text-white
+            backdrop-blur-md
+            transition-colors
+            hover:border-red-500
+            hover:text-red-500
+          "
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+          </svg>
+        </a>
+
+        {/* TikTok */}
+        <a
+          href="https://tiktok.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+          className="
+            flex
+            h-10
+            w-10
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/20
+            bg-black/70
+            text-white
+            backdrop-blur-md
+            transition-colors
+            hover:border-red-500
+            hover:text-red-500
+          "
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+          </svg>
+        </a>
+
+        {/* WhatsApp */}
+        <a
+          href="https://whatsapp.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          className="
+            flex
+            h-10
+            w-10
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/20
+            bg-black/70
+            text-white
+            backdrop-blur-md
+            transition-colors
+            hover:border-red-500
+            hover:text-red-500
+          "
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+        </a>
+      </div>
+
       <div
         aria-hidden="true"
         className="
@@ -106,7 +206,7 @@ export default function Hero() {
           />
 
           <span className="urban-kicker text-[9px] text-zinc-200 sm:text-xs">
-            AlfStore Streetwear
+            ALF STREETWEAR
           </span>
         </div>
 

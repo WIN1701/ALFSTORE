@@ -67,7 +67,7 @@ export default function Hero() {
       >
         {/* Instagram */}
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/alfstore.sv?igsh=ZTBvbTRsdXUyNzlu"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
@@ -97,7 +97,7 @@ export default function Hero() {
 
         {/* TikTok */}
         <a
-          href="https://tiktok.com"
+          href="https://www.tiktok.com/@alfstore.sv?_r=1&_t=ZS-97vyM0WHz4k"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="TikTok"
@@ -123,9 +123,9 @@ export default function Hero() {
           </svg>
         </a>
 
-        {/* WhatsApp */}
+        {/* WhatsApp (Recuerda cambiar 503XXXXXXXX por tu número real con código de país) */}
         <a
-          href="https://whatsapp.com"
+          href="https://wa.me/503XXXXXXXX"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"

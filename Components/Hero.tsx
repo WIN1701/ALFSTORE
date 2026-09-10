@@ -52,7 +52,7 @@ export default function Hero() {
         "
       />
 
-      {/* REDES SOCIALES FLOTANTES EN LA SECCIÓN 1 (SOLO MÓVIL, DESAPARECEN AL BAJAR) */}
+      {/* REDES SOCIALES FLOTANTES */}
       <div
         className="
           absolute
@@ -62,7 +62,6 @@ export default function Hero() {
           flex
           flex-col
           gap-2.5
-          md:hidden
         "
       >
         {/* Instagram */}

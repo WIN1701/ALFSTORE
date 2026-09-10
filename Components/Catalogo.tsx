@@ -10,8 +10,6 @@ import {
   ShoppingBag,
   X,
   ZoomIn,
-  Plus,
-  Minus,
 } from "lucide-react";
 
 import { supabase } from "../lib/supabase";
@@ -21,8 +19,9 @@ import {
   type Talla,
 } from "../app/context/cartcontext";
 
+// Definimos la interfaz del producto basada en la tabla de Supabase
 interface ProductoSupabase {
-  id: string;
+  id: string; // UUID de Supabase
   nombre: string;
   descripcion: string | null;
   precio: number;
@@ -46,10 +45,10 @@ export default function Catalogo() {
   const [paginaActual, setPaginaActual] = useState(1);
   const [imagenAmpliada, setImagenAmpliada] = useState<string | null>(null);
   const [tallasSeleccionadas, setTallasSeleccionadas] = useState<Record<string, Talla>>({});
-  const [cantidadesSeleccionadas, setCantidadesSeleccionadas] = useState<Record<string, number>>({});
   const [productoAgregado, setProductoAgregado] = useState<string | null>(null);
   const [imagenesConError, setImagenesConError] = useState<Record<string, boolean>>({});
 
+  // Cargar productos desde Supabase al iniciar
   useEffect(() => {
     async function cargarProductos() {
       try {
@@ -64,11 +63,6 @@ export default function Catalogo() {
           console.error("Error al obtener productos de Supabase:", error.message);
         } else if (data) {
           setProductos(data);
-          const cantidadesIniciales: Record<string, number> = {};
-          data.forEach((p) => {
-            cantidadesIniciales[p.id] = 1;
-          });
-          setCantidadesSeleccionadas(cantidadesIniciales);
         }
       } catch (err) {
         console.error("Error inesperado:", err);
@@ -113,32 +107,20 @@ export default function Catalogo() {
     }));
   };
 
-  const incrementarCantidad = (productoId: string) => {
-    setCantidadesSeleccionadas((anterior) => ({
-      ...anterior,
-      [productoId]: (anterior[productoId] || 1) + 1,
-    }));
-  };
-
-  const decrementarCantidad = (productoId: string) => {
-    setCantidadesSeleccionadas((anterior) => {
-      const actual = anterior[productoId] || 1;
-      return {
-        ...anterior,
-        [productoId]: actual > 1 ? actual - 1 : 1,
-      };
-    });
-  };
-
   const agregarProducto = (producto: ProductoSupabase) => {
     const talla = tallasSeleccionadas[producto.id];
-    const cantidad = cantidadesSeleccionadas[producto.id] || 1;
 
     if (!talla) {
       return;
     }
 
-    agregarAlCarrito(producto, talla, cantidad);
+    // Adaptamos el producto al formato que espera el carrito (mapeando id string/number si es necesario)
+    const productoParaCarrito = {
+      id: 1, // O ajusta tu cartcontext si ya acepta strings en id
+      imagen: producto.imagen,
+    };
+
+    agregarAlCarrito(producto as any, talla);
     setProductoAgregado(producto.id);
 
     window.setTimeout(() => {
@@ -182,7 +164,7 @@ export default function Catalogo() {
             </h2>
 
             <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-zinc-400">
-              Selecciona una talla, indica la cantidad y agrega la camisa al carrito.
+              Selecciona una talla y agrega la camisa al carrito.
             </p>
 
             {!cargando && productos.length > 0 && (
@@ -205,13 +187,11 @@ export default function Catalogo() {
               <div className="catalogo-grid">
                 {productosVisibles.map((producto) => {
                   const tallaSeleccionada = tallasSeleccionadas[producto.id];
-                  const cantidadActual = cantidadesSeleccionadas[producto.id] || 1;
                   const agregado = productoAgregado === producto.id;
                   const imagenConError = imagenesConError[producto.id] === true;
 
                   return (
-                    <article key={producto.id} className="producto-card flex flex-col overflow-hidden">
-                      {/* Forzamos una altura más pequeña y compacta con style inline para evitar bloqueos de CSS global */}
+                    <article key={producto.id} className="producto-card">
                       <button
                         type="button"
                         disabled={imagenConError}
@@ -220,14 +200,13 @@ export default function Catalogo() {
                             setImagenAmpliada(producto.imagen);
                           }
                         }}
-                        style={{ height: "135px", minHeight: "135px", maxHeight: "135px" }}
-                        className="producto-media relative block w-full bg-zinc-950 shrink-0"
+                        className="producto-media"
                       >
                         {imagenConError ? (
-                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-zinc-950 text-zinc-500">
-                            <ImageOff size={24} />
-                            <span className="text-[8px] font-black uppercase">
-                              No disponible
+                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-zinc-950 text-zinc-600">
+                            <ImageOff size={30} />
+                            <span className="text-[9px] font-black uppercase">
+                              Imagen no disponible
                             </span>
                           </div>
                         ) : (
@@ -243,89 +222,61 @@ export default function Catalogo() {
                                 [producto.id]: true,
                               }));
                             }}
-                            className="producto-foto w-full h-full object-cover"
+                            className="producto-foto"
                           />
                         )}
 
                         {!imagenConError && (
-                          <span className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full border border-white/25 bg-black/85 text-white">
-                            <ZoomIn size={14} />
+                          <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/85 text-white">
+                            <ZoomIn size={18} />
                           </span>
                         )}
                       </button>
 
-                      {/* Contenido inferior con textos claros y bien visibles */}
-                      <div className="flex flex-1 flex-col border-t border-white/10 p-3 justify-between">
-                        <div>
-                          <p className="mb-1.5 text-center text-[10px] font-extrabold uppercase text-zinc-200 truncate">
-                            {producto.nombre}
-                          </p>
+                      <div className="flex min-h-[175px] flex-1 flex-col border-t border-white/10 p-3 sm:min-h-[195px] sm:p-4">
+                        <p className="mb-1 text-center text-[9px] font-bold uppercase text-zinc-500 truncate">
+                          {producto.nombre}
+                        </p>
 
-                          <p className="mb-2 text-center text-[10px] font-black uppercase text-zinc-300">
-                            Selecciona tu talla
-                          </p>
+                        <p className="mb-4 text-center text-[10px] font-bold uppercase text-zinc-400 sm:text-xs">
+                          Selecciona tu talla
+                        </p>
 
-                          {/* TALLAS */}
-                          <div className="grid grid-cols-4 gap-1.5 mb-2.5">
-                            {TALLAS.map((talla) => (
-                              <button
-                                key={talla}
-                                type="button"
-                                onClick={() => seleccionarTalla(producto.id, talla)}
-                                className={`flex aspect-square items-center justify-center rounded-full border text-xs font-bold ${
-                                  tallaSeleccionada === talla
-                                    ? "border-red-500 bg-red-700 text-white"
-                                    : "border-white/20 bg-black text-zinc-300"
-                                }`}
-                              >
-                                {talla}
-                              </button>
-                            ))}
-                          </div>
-
-                          {/* SELECTOR DE CANTIDAD (- 1 +) */}
-                          <div className="flex items-center justify-between mb-2.5 bg-zinc-950 border border-white/15 rounded-lg px-3 py-1.5">
-                            <span className="text-[10px] font-black uppercase text-zinc-300">Cantidad:</span>
-                            <div className="flex items-center gap-3">
-                              <button
-                                type="button"
-                                onClick={() => decrementarCantidad(producto.id)}
-                                className="text-zinc-300 hover:text-white transition-colors p-1"
-                              >
-                                <Minus size={14} />
-                              </button>
-                              <span className="text-xs font-black text-white w-5 text-center">
-                                {cantidadActual}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => incrementarCantidad(producto.id)}
-                                className="text-zinc-300 hover:text-white transition-colors p-1"
-                              >
-                                <Plus size={14} />
-                              </button>
-                            </div>
-                          </div>
+                        <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
+                          {TALLAS.map((talla) => (
+                            <button
+                              key={talla}
+                              type="button"
+                              onClick={() => seleccionarTalla(producto.id, talla)}
+                              className={`flex aspect-square items-center justify-center rounded-full border text-xs font-bold ${
+                                tallaSeleccionada === talla
+                                  ? "border-red-500 bg-red-700 text-white"
+                                  : "border-white/20 bg-black text-zinc-400"
+                              }`}
+                            >
+                              {talla}
+                            </button>
+                          ))}
                         </div>
 
                         <button
                           type="button"
                           disabled={!tallaSeleccionada || imagenConError}
                           onClick={() => agregarProducto(producto)}
-                          className={`flex min-h-10 w-full items-center justify-center gap-2 rounded-xl px-2 text-[10px] font-black uppercase ${
+                          className={`mt-auto flex min-h-11 w-11 sm:w-full items-center justify-center gap-2 rounded-xl px-2 text-[8px] font-black uppercase sm:text-xs ${
                             tallaSeleccionada && !imagenConError
-                              ? "bg-red-700 text-white hover:bg-red-600 transition-colors"
+                              ? "bg-red-700 text-white"
                               : "cursor-not-allowed bg-zinc-800 text-zinc-500"
                           }`}
                         >
                           {agregado ? <Check size={16} /> : <ShoppingBag size={16} />}
-                          <span>
+                          <span className="hidden sm:inline">
                             {imagenConError
                               ? "No disponible"
                               : agregado
-                              ? "¡Agregado!"
+                              ? "Agregado"
                               : tallaSeleccionada
-                              ? `Agregar (${cantidadActual})`
+                              ? "Agregar"
                               : "Elige talla"}
                           </span>
                         </button>

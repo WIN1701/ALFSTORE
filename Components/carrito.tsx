@@ -96,7 +96,7 @@ export default function Carrito() {
       .join("\n\n");
 
     const mensaje = [
-      "Hola, quiero este pedido en *AlfStore*:",
+      "Hola, quiero realizar este pedido en *AlfStore*:",
       "",
       detalle,
       "",

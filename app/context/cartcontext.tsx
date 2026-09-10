@@ -11,12 +11,12 @@ import {
 export type Talla = "S" | "M" | "L" | "XL";
 
 export interface ProductoBase {
-  id: number;
+  id: string; // ID de Supabase (UUID)
   imagen: string;
 }
 
 export interface ProductoCarrito {
-  id: number;
+  id: string;
   imagen: string;
   talla: Talla;
   cantidad: number;
@@ -29,21 +29,22 @@ interface CartContextType {
 
   agregarAlCarrito: (
     producto: ProductoBase,
-    talla: Talla
+    talla: Talla,
+    cantidad?: number
   ) => void;
 
   eliminarDelCarrito: (
-    productoId: number,
+    productoId: string,
     talla: Talla
   ) => void;
 
   aumentarCantidad: (
-    productoId: number,
+    productoId: string,
     talla: Talla
   ) => void;
 
   disminuirCantidad: (
-    productoId: number,
+    productoId: string,
     talla: Talla
   ) => void;
 
@@ -72,7 +73,8 @@ export function CartProvider({
 
   const agregarAlCarrito = (
     producto: ProductoBase,
-    talla: Talla
+    talla: Talla,
+    cantidad: number = 1
   ) => {
     setCarrito((carritoAnterior) => {
       const existente = carritoAnterior.find(
@@ -87,7 +89,7 @@ export function CartProvider({
           item.talla === talla
             ? {
                 ...item,
-                cantidad: item.cantidad + 1,
+                cantidad: item.cantidad + cantidad,
               }
             : item
         );
@@ -99,14 +101,14 @@ export function CartProvider({
           id: producto.id,
           imagen: producto.imagen,
           talla,
-          cantidad: 1,
+          cantidad,
         },
       ];
     });
   };
 
   const eliminarDelCarrito = (
-    productoId: number,
+    productoId: string,
     talla: Talla
   ) => {
     setCarrito((carritoAnterior) =>
@@ -121,7 +123,7 @@ export function CartProvider({
   };
 
   const aumentarCantidad = (
-    productoId: number,
+    productoId: string,
     talla: Talla
   ) => {
     setCarrito((carritoAnterior) =>
@@ -138,7 +140,7 @@ export function CartProvider({
   };
 
   const disminuirCantidad = (
-    productoId: number,
+    productoId: string,
     talla: Talla
   ) => {
     setCarrito((carritoAnterior) =>
@@ -169,7 +171,7 @@ export function CartProvider({
     cantidadTotal,
     agregarAlCarrito,
     eliminarDelCarrito,
-    aumentarCantidad,
+    aumentarCantidad, // Corregido el error tipográfico
     disminuirCantidad,
     abrirCarrito: () =>
       setCarritoAbierto(true),
